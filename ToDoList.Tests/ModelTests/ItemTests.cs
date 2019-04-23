@@ -16,9 +16,14 @@ namespace ToDoList.Tests
     [TestMethod]
     public void GetDescription_ReturnsDescription_String()
     {
+      //Arrange
       string description = "Walk the dog.";
       Item newItem = new Item(description);
-      string result = newItem.GetDescription();
+
+      //Act
+      string result = newItem.GetDescription();// GetDescription getter method
+
+      //Assert
       Assert.AreEqual(description, result);
     }
 
