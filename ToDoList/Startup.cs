@@ -37,6 +37,8 @@ namespace ToDoList
           await context.Response.WriteAsync("Something went wrong!");
         });
 
+        app.UseDeveloperExceptionPage();
+
     }
   }
 }
