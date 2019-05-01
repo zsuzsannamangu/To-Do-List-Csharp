@@ -16,20 +16,32 @@ namespace ToDoList.Models
       _id = _instances.Count;
       _items = new List<Item>{};
     }
-
+    //retrieve Category name
     public string GetName()
     {
       return _name;
     }
-
+    //retrieve Category IDs
     public int GetId()
     {
       return _id;
     }
-
+    //we must delete all Categorys between tests.
     public static void ClearAll()
     {
       _instances.Clear();
+    }
+
+    //functionality to retrieve all Category objects to display in our app
+    public static List<Category> GetAll()
+    {
+      return _instances;
+    }
+
+    //Find() method to locate and display specific Category objects
+    public static Category Find(int searchId)
+    {
+      return _instances[searchId-1];
     }
   }
 }
