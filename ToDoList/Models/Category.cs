@@ -14,6 +14,7 @@ namespace ToDoList.Models
       _name = categoryName;
       _instances.Add(this);
       _id = _instances.Count;
+      //this is where Items related to the parent Category will be stored:
       _items = new List<Item>{};
     }
     //retrieve Category name
@@ -42,6 +43,18 @@ namespace ToDoList.Models
     public static Category Find(int searchId)
     {
       return _instances[searchId-1];
+    }
+
+    //GetItems() method on a Category correctly returns an empty List meant to hold Items.
+    public List<Item> GetItems()
+    {
+      return _items;
+    }
+
+    //AddItem() will accept a Item object, and then use the built-in List Add() method to save that item into the _items property of a specific Category
+    public void AddItem(Item item)
+    {
+      _items.Add(item);
     }
   }
 }

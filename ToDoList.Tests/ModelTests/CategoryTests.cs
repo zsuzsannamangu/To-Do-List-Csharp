@@ -90,6 +90,45 @@ namespace ToDoList.Tests
        Assert.AreEqual(newCategory2, result);
      }
 
+     //we assert that calling a GetItems() method on a Category correctly returns an empty List meant to hold Items
+     [TestMethod]
+     public void GetItems_ReturnsEmptyItemList_ItemList()
+     {
+       //Arrange
+       string name = "Work";
+       Category newCategory = new Category(name);
+       List<Item> newList = new List<Item> { };
+
+       //Act
+       List<Item> result = newCategory.GetItems();
+
+       //Assert
+       CollectionAssert.AreEqual(newList, result);
+     }
+
+      //test that we can add an Item object into the _items property of a Category object
+     [TestMethod]
+     public void AddItem_AssociatesItemWithCategory_ItemList()
+     {
+       //Arrange
+       string description = "Walk the dog.";
+       //create new Item
+       Item newItem = new Item(description);
+       //add created new Item to a List
+       List<Item> newList = new List<Item> { newItem };
+       string name = "Work";
+       //create new Category
+       Category newCategory = new Category(name);
+       //call AddItem() on new Category and pass in our sample Item(newItem)
+       newCategory.AddItem(newItem);
+
+       //Act
+       //call GetItems to retrieve Items saved in Category
+       List<Item> result = newCategory.GetItems();
+
+       //Assert
+       //assert that newCategory.GetItems() returns a List containing our Item
+       CollectionAssert.AreEqual(newList, result);
 
   }
 }
