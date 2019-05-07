@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using MySql.Data.MySqlClient;
 
 namespace ToDoList.Models
 {
@@ -50,11 +51,24 @@ namespace ToDoList.Models
       }
       return allItems;
     }
+    //delete objects:
+    public static void ClearAll()
+    {
+     //call DB.Connection() to create our conn object
+     MySqlConnection conn = DB.Connection();
+     conn.Open();
+     var cmd = conn.CreateCommand() as MySqlCommand;
+     cmd.CommandText = @"DELETE FROM items;";
+     cmd.ExecuteNonQuery();
+     //SQL statements that modify data (like deleting it!) instead of querying and returning data are executed with the ExecuteNonQuery() method
+     //whereas executing commands that retrieve data use different methods, like the ExecuteReader() one we used in GetAll().
+    }
 
-    // public static void ClearAll()
-    // {
-    //   _instances.Clear();
-    // }
+    conn.Close();
+    if (conn != null)
+    {
+    conn.Dispose();
+    }
 
     // public static Item Find(int searchId)
     // {

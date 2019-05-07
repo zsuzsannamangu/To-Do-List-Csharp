@@ -1,12 +1,25 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ToDoList.Models;
 using System.Collections.Generic;
+using MySql.Data.MySqlClient;
 
 namespace ToDoList.Tests
 {
   [TestClass]
-  public class ItemTest
+  public class ItemTest : IDisposable
   {
+
+    public void Dispose()
+    {
+      Item.ClearAll();
+      //to empty our test database between each test
+    }
+
+    public ItemTest()
+    {
+      DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=to_do_list_test;";
+    }
+
     [TestMethod]
     public void GetAll_ReturnsItems_ItemList()
     {
